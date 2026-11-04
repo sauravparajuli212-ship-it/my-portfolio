@@ -1,257 +1,1427 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Saurav Parajuli's personal portfolio — web projects, creative interests, and upcoming Unity game development.">
-  <meta name="theme-color" content="#0b1020">
-  <title>Saurav Parajuli | Creative Builder</title>
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Saurav Parajuli - IT student, web developer, AI enthusiast and creative builder. Explore Project ORBIT, PlayZone and more.">
+  <meta name="author" content="Saurav Parajuli">
+  <title>Saurav Parajuli | Developer & Creative Builder</title>
+
   <style>
     :root {
       color-scheme: dark;
       --bg: #080b14;
-      --panel: rgba(17, 24, 42, .78);
-      --panel-solid: #11182a;
+      --panel: #11182a;
+      --panel2: #151d32;
       --text: #f3f5fb;
       --muted: #a6afc4;
-      --line: rgba(176, 190, 220, .15);
-      --accent: #8b7cff;
-      --accent-2: #43d9c5;
+      --purple: #9b8cff;
+      --cyan: #43d9c5;
+      --line: rgba(176,190,220,.14);
+      --gradient: linear-gradient(110deg,#aa9cff,#7e8cff,#43d9c5);
       --max: 1120px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
     body {
-      margin: 0; background:
-        radial-gradient(ellipse at 12% 0%, rgba(107, 82, 255, .17), transparent 35rem),
-        radial-gradient(ellipse at 90% 30%, rgba(43, 206, 190, .09), transparent 28rem),
+      background:
+        radial-gradient(ellipse at 10% 0%,#7355ff20,transparent 35rem),
+        radial-gradient(ellipse at 90% 35%,#43d9c515,transparent 30rem),
         var(--bg);
-      color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65; -webkit-font-smoothing: antialiased;
+      color: var(--text);
+      font-family: Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
-    a { color: inherit; text-decoration: none; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
-    .nav-shell { position: sticky; top: 0; z-index: 20; background: rgba(8, 11, 20, .82); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
-    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 750; letter-spacing: -.03em; }
-    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #080b14; font-weight: 900; }
-    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .92rem; }
-    .nav-links a:hover, .text-link:hover { color: var(--text); }
-    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 10px; padding: 8px 12px; font: inherit; }
-    .hero { min-height: 610px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 60px; padding-block: 94px 90px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; color: #cbd3e7; font-size: .82rem; background: rgba(255,255,255,.025); }
-    .dot { width: 7px; height: 7px; background: var(--accent-2); border-radius: 50%; box-shadow: 0 0 14px var(--accent-2); }
-    h1 { font-size: clamp(3rem, 6.4vw, 5.6rem); line-height: .99; letter-spacing: -.075em; margin: 24px 0; max-width: 760px; }
-    .gradient { background: linear-gradient(100deg, #a79cff 10%, #6fe6d5 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-copy { color: var(--muted); font-size: 1.08rem; max-width: 590px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 11px 17px; border: 1px solid var(--line); border-radius: 12px; font-weight: 650; font-size: .94rem; transition: transform .2s, border-color .2s, background .2s; }
-    .btn:hover { transform: translateY(-2px); border-color: rgba(167,156,255,.6); }
-    .btn-primary { color: #080b14; background: linear-gradient(110deg, #a79cff, #6fe6d5); border: 0; }
-    .hero-card { padding: 28px; border: 1px solid var(--line); border-radius: 26px; background: linear-gradient(145deg, rgba(23,32,55,.92), rgba(13,18,32,.8)); box-shadow: 0 24px 80px rgba(0,0,0,.2); transform: rotate(1.5deg); }
-    .orbit { aspect-ratio: 1; border-radius: 22px; display: grid; place-items: center; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 45%, rgba(139,124,255,.25), transparent 52%), #0b1020; border: 1px solid var(--line); }
-    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(167,156,255,.35); border-radius: 50%; width: 74%; aspect-ratio: 1; transform: rotate(-25deg) scaleY(.55); }
-    .orbit::after { width: 95%; transform: rotate(55deg) scaleY(.55); border-color: rgba(67,217,197,.28); }
-    .monogram { position: relative; z-index: 1; font-size: clamp(4rem, 9vw, 7rem); font-weight: 850; letter-spacing: -.1em; background: linear-gradient(135deg, #fff, #a79cff 60%, #6fe6d5); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .mini-label { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: .83rem; margin-top: 20px; }
-    section { padding-block: 78px; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
-    .kicker { text-transform: uppercase; letter-spacing: .16em; color: var(--accent-2); font-size: .76rem; font-weight: 750; }
-    h2 { margin: 7px 0 0; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.055em; line-height: 1.1; }
-    .section-intro { color: var(--muted); max-width: 500px; margin: 0; }
-    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
-    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 28px; }
-    .panel p { color: var(--muted); margin: 12px 0 0; }
-    .interest-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: rgba(255,255,255,.035); padding: 8px 12px; border-radius: 999px; color: #d8def0; font-size: .9rem; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .skill { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: rgba(17,24,42,.52); }
-    .skill strong { display: block; margin-bottom: 4px; }
-    .skill span { color: var(--muted); font-size: .9rem; }
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .project { position: relative; min-height: 260px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 25px; transition: transform .2s, border-color .2s; }
-    .project:hover { transform: translateY(-4px); border-color: rgba(167,156,255,.55); }
-    .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
-    .project-icon { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; font-size: 1.35rem; background: linear-gradient(135deg, rgba(139,124,255,.24), rgba(67,217,197,.12)); border: 1px solid var(--line); }
-    .status { display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(67,217,197,.35); color: #8ceadd; background: rgba(67,217,197,.08); padding: 5px 9px; font-size: .73rem; font-weight: 750; letter-spacing: .04em; white-space: nowrap; }
-    .status-soon { color: #d4caff; border-color: rgba(167,156,255,.4); background: rgba(139,124,255,.1); }
-    .project h3 { font-size: 1.35rem; letter-spacing: -.035em; margin: 22px 0 6px; }
-    .project p { color: var(--muted); margin: 0 0 20px; max-width: 480px; }
-    .text-link { display: inline-flex; gap: 8px; align-items: center; font-weight: 650; font-size: .92rem; color: #c4bcff; }
-    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: clamp(25px, 5vw, 48px); border-radius: 26px; border: 1px solid var(--line); background: radial-gradient(ellipse at 100% 0%, rgba(67,217,197,.1), transparent 40%), linear-gradient(120deg, rgba(139,124,255,.13), rgba(17,24,42,.8)); }
-    .contact-box p { color: var(--muted); max-width: 540px; }
-    .email { word-break: break-word; }
-    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 24px 0; font-size: .88rem; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-    :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 4px; }
-    @media (max-width: 780px) {
-      .hero { grid-template-columns: 1fr; gap: 38px; min-height: auto; padding-block: 76px 54px; }
-      .hero-card { max-width: 390px; width: 100%; margin-inline: auto; transform: none; }
-      .orbit { aspect-ratio: 1.15; }
-      .about-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .section-head { align-items: flex-start; flex-direction: column; }
-      .contact-box { align-items: flex-start; flex-direction: column; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    @media (max-width: 560px) {
-      .wrap { width: min(var(--max), calc(100% - 28px)); }
-      nav { min-height: 64px; flex-wrap: wrap; padding-block: 12px; }
-      .menu-btn { display: inline-flex; }
-      .nav-links { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 4px; }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 10px 4px; }
-      .hero { padding-top: 58px; }
-      h1 { font-size: clamp(2.9rem, 14vw, 4.4rem); }
-      section { padding-block: 58px; }
-      .projects-grid, .skills-grid { grid-template-columns: 1fr; }
-      .panel, .project { padding: 21px; }
-      .project { min-height: 235px; }
+
+    button,a {
+      -webkit-tap-highlight-color: transparent;
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+
+    button {
+      font: inherit;
+    }
+
+    .wrap {
+      width: min(var(--max),calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .gradient {
+      background: var(--gradient);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* NAVIGATION */
+
+    .nav-shell {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,11,20,.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -.04em;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--gradient);
+      color: #080b14;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .nav-links a {
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-links .nav-contact {
+      color: #d9d2ff;
+      border: 1px solid #9b8cff55;
+      border-radius: 10px;
+      padding: 9px 15px;
+    }
+
+    .menu-btn {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: white;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 10px;
+      background: white;
+      color: black;
+      padding: 10px;
+      z-index: 200;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 670px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 65px;
+      padding-block: 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 13px;
+      color: #d2d7e9;
+      background: #ffffff05;
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 14px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem,7vw,6rem);
+      line-height: 1.02;
+      letter-spacing: -.075em;
+      margin: 27px 0;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 570px;
+      font-size: 1.05rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      min-height: 47px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 18px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: transform .2s,border-color .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--purple);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: #080b14;
+      border: 0;
+    }
+
+    .hero-note {
+      margin-top: 25px;
+      color: #858fa8;
+      font-size: .83rem;
+    }
+
+    /* HERO VISUAL */
+
+    .hero-card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: linear-gradient(145deg,#171d35,#0d1423);
+      box-shadow: 0 25px 90px #0005;
+      position: relative;
+    }
+
+    .orbit {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: radial-gradient(circle,#8271ff30,transparent 55%),#0b1020;
+      border: 1px solid var(--line);
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      width: 75%;
+      aspect-ratio: 1;
+      border: 1px solid #a99cff60;
+      border-radius: 50%;
+      transform: rotate(-30deg) scaleY(.55);
+      animation: rotate 15s linear infinite;
+    }
+
+    .orbit::after {
+      width: 100%;
+      border-color: #43d9c555;
+      animation-direction: reverse;
+      animation-duration: 20s;
+    }
+
+    .monogram {
+      z-index: 1;
+      font-size: clamp(5rem,10vw,8rem);
+      font-weight: 900;
+      letter-spacing: -.12em;
+      background: var(--gradient);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    .mini-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: 18px;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(330deg) scaleY(.55); }
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px #9b8cff33); }
+      to { filter: drop-shadow(0 0 22px #43d9c566); }
+    }
+
+    /* GENERAL SECTIONS */
+
+    section:not(.hero) {
+      padding-block: 85px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 32px;
+    }
+
+    .kicker {
+      color: var(--cyan);
+      font-size: .76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    h2 {
+      font-size: clamp(2rem,4vw,3.2rem);
+      line-height: 1.15;
+      letter-spacing: -.06em;
+      margin-top: 8px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 490px;
+      font-size: .92rem;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 29px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+
+    .panel h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: .94rem;
+      margin-top: 12px;
+    }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff05;
+      color: #d8def0;
+      font-size: .82rem;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+    }
+
+    .skill {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg,#131b2e,#0d1321);
+      transition: transform .2s,border-color .2s;
+    }
+
+    .skill:hover {
+      transform: translateY(-4px);
+      border-color: #9b8cff77;
+    }
+
+    .skill-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: #9b8cff17;
+      font-size: 1.35rem;
+      margin-bottom: 13px;
+    }
+
+    .skill strong {
+      display: block;
+      font-size: .98rem;
+      margin-bottom: 5px;
+    }
+
+    .skill span {
+      display: block;
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 19px;
+    }
+
+    .project {
+      min-height: 285px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 21px;
+      background: linear-gradient(145deg,#141c30,#0d1320);
+      transition: transform .25s,border-color .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      right: -100px;
+      top: -110px;
+      background: var(--project-glow,#9b8cff);
+      filter: blur(85px);
+      opacity: .16;
+      pointer-events: none;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: #9b8cff80;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #9b8cff18;
+      font-size: 1.5rem;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border: 1px solid #43d9c555;
+      border-radius: 999px;
+      color: #8ceadd;
+      background: #43d9c511;
+      font-size: .69rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .status-soon {
+      color: #c7baff;
+      background: #9b8cff15;
+      border-color: #9b8cff55;
+    }
+
+    .status-featured {
+      color: #c8baff;
+      border-color: #9b8cff77;
+      background: #9b8cff18;
+    }
+
+    .project h3 {
+      font-size: 1.4rem;
+      letter-spacing: -.04em;
+      margin: 22px 0 8px;
+    }
+
+    .project p {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 19px;
+    }
+
+    .project-tags span {
+      font-size: .72rem;
+      color: #c9c2ff;
+      background: #9b8cff12;
+      border: 1px solid #9b8cff30;
+      border-radius: 30px;
+      padding: 4px 9px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: #c5bdff;
+      font-size: .88rem;
+      font-weight: 750;
+      transition: color .2s;
+    }
+
+    .text-link:hover {
+      color: var(--cyan);
+    }
+
+    .project-note {
+      color: #8992a8;
+      font-size: .8rem;
+      margin-top: 23px;
+    }
+
+    /* GITHUB */
+
+    .github-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(120deg,#17182d,#101b27);
+    }
+
+    .github-box h3 {
+      font-size: 1.3rem;
+    }
+
+    .github-box p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 5px;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: clamp(27px,5vw,50px);
+      border: 1px solid #9b8cff55;
+      border-radius: 25px;
+      background:
+        radial-gradient(ellipse at 100% 0%,#43d9c51a,transparent 45%),
+        linear-gradient(120deg,#17152f,#101a28);
+    }
+
+    .contact-box h2 {
+      max-width: 580px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 540px;
+      margin: 15px 0;
+    }
+
+    .email {
+      color: var(--cyan);
+      font-size: .94rem;
+      word-break: break-word;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner strong {
+      color: #c6baff;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    /* ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease,transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TABLET */
+
+    @media(max-width:850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        min-height: auto;
+        padding-block: 75px;
+      }
+
+      .hero-card {
+        max-width: 420px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .orbit {
+        aspect-ratio: 1.2;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:600px) {
+      .wrap {
+        width: calc(100% - 30px);
+      }
+
+      nav {
+        min-height: 66px;
+        flex-wrap: wrap;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 5px 0 15px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 11px 5px;
+      }
+
+      .nav-links .nav-contact {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .hero {
+        padding-block: 65px 50px;
+      }
+
+      h1 {
+        font-size: clamp(3rem,13vw,4.5rem);
+      }
+
+      .hero-copy {
+        font-size: .95rem;
+      }
+
+      .hero-card {
+        padding: 16px;
+      }
+
+      .mini-label {
+        font-size: .69rem;
+      }
+
+      section:not(.hero) {
+        padding-block: 60px;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 260px;
+        padding: 22px;
+      }
+
+      .panel {
+        padding: 23px;
+      }
+
+      .github-box {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 23px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- NAVIGATION -->
+
   <header class="nav-shell">
     <nav class="wrap" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Saurav Parajuli home">
-        <span class="brand-mark">S</span><span>Saurav Parajuli<span class="gradient">.</span></span>
+
+      <a class="brand" href="#home">
+        <span class="brand-mark">S</span>
+        <span>Saurav Parajuli<span class="gradient">.</span></span>
       </a>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        aria-label="Open navigation"
+      >
+        ☰ Menu
+      </button>
+
       <div class="nav-links" id="navLinks">
-        <a href="#about">About</a><a href="#interests">Interests</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="nav-contact">Let's Connect ↗</a>
       </div>
+
     </nav>
   </header>
 
-  <main>
+  <main id="main">
+
+    <!-- HERO -->
+
     <section class="wrap hero" id="home">
+
       <div>
-        <div class="eyebrow"><span class="dot"></span> IT student · Creative builder</div>
-        <h1>Hey, I'm Saurav.<br><span class="gradient">I build ideas.</span></h1>
-        <p class="hero-copy">I'm an IT student exploring web design, interactive experiences, and game development. I enjoy learning by building projects and turning ideas into something people can use.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
-          <a class="btn" href="#contact">Get in touch</a>
+
+        <div class="eyebrow">
+          <span class="dot"></span>
+          IT STUDENT · CREATIVE BUILDER
         </div>
+
+        <h1>
+          Hey, I'm Saurav.
+          <br>
+          <span class="gradient">I build ideas.</span>
+        </h1>
+
+        <p class="hero-copy">
+          I'm an IT student passionate about technology,
+          web development, AI and game creation.
+          I enjoy learning by building real projects
+          and turning creative ideas into digital experiences.
+        </p>
+
+        <div class="actions">
+          <a href="#projects" class="btn btn-primary">
+            Explore My Projects ↗
+          </a>
+
+          <a href="#contact" class="btn">
+            Get In Touch
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Curious by nature. Building step by step. Always learning.
+        </p>
+
       </div>
-      <div class="hero-card" aria-label="Saurav's portfolio monogram">
-        <div class="orbit"><div class="monogram">SP</div></div>
-        <div class="mini-label"><span>Curious by nature</span><span>Building step by step ↗</span></div>
+
+      <div class="hero-card" aria-label="SP creative monogram">
+
+        <div class="orbit">
+          <div class="monogram">SP</div>
+        </div>
+
+        <div class="mini-label">
+          <span>Creative thinking</span>
+          <span>Building the future ↗</span>
+        </div>
+
       </div>
+
     </section>
+
+    <!-- ABOUT -->
 
     <section class="wrap" id="about">
+
       <div class="section-head">
-        <div><div class="kicker">A little about me</div><h2>Learning by making.</h2></div>
-        <p class="section-intro">A work in progress, built with curiosity, consistency, and a willingness to try new things.</p>
+        <div>
+          <div class="kicker">A LITTLE ABOUT ME</div>
+          <h2>Learning by <span class="gradient">making.</span></h2>
+        </div>
+
+        <p class="section-intro">
+          A student, a creator and an aspiring developer
+          exploring the possibilities of technology.
+        </p>
       </div>
+
       <div class="about-grid">
+
         <article class="panel">
-          <h3>Who I am</h3>
-          <p>I'm Saurav, an IT student developing my skills through hands-on projects. I'm interested in how thoughtful design and technology can work together to create useful, engaging digital experiences.</p>
-          <p>This portfolio is where I'll share projects I'm building, ideas I'm exploring, and what I learn along the way.</p>
+          <h3>Who I Am</h3>
+
+          <p>
+            I'm Saurav Parajuli, an IT student who enjoys
+            experimenting with technology and building
+            digital projects.
+          </p>
+
+          <p>
+            From creating browser games to developing my own
+            AI assistant, I believe the best way to learn
+            programming is by building things and solving
+            real problems.
+          </p>
+
+          <p>
+            My goal is to keep improving my technical skills
+            and create projects that people can actually use.
+          </p>
         </article>
-        <article class="panel" id="interests">
-          <h3>Interests</h3>
-          <p>Areas I'm exploring and excited to learn more about.</p>
+
+        <article class="panel">
+
+          <h3>What I Love Exploring</h3>
+
+          <p>
+            Different areas of technology and creativity
+            that inspire me.
+          </p>
+
           <div class="interest-list">
-            <span class="chip">✦ Web design</span><span class="chip">⌘ Web development</span><span class="chip">🎮 Game development</span><span class="chip">✧ UI / UX</span><span class="chip">◈ Creative technology</span>
+            <span class="chip">🌐 Web Development</span>
+            <span class="chip">🤖 Artificial Intelligence</span>
+            <span class="chip">🎮 Game Development</span>
+            <span class="chip">🎨 UI / UX Design</span>
+            <span class="chip">💡 Creative Technology</span>
+            <span class="chip">🚀 Problem Solving</span>
           </div>
+
         </article>
+
       </div>
+
     </section>
+
+    <!-- SKILLS -->
 
     <section class="wrap" id="skills">
+
       <div class="section-head">
-        <div><div class="kicker">What I'm exploring</div><h2>Skills & focus.</h2></div>
-        <p class="section-intro">These are learning areas, not claims of professional mastery. I'll keep growing them through real projects.</p>
+
+        <div>
+          <div class="kicker">MY TECHNICAL JOURNEY</div>
+          <h2>Skills & <span class="gradient">Focus.</span></h2>
+        </div>
+
+        <p class="section-intro">
+          Technologies and tools I'm learning and using
+          through my projects. Always improving.
+        </p>
+
       </div>
+
       <div class="skills-grid">
-        <div class="skill"><strong>HTML & CSS</strong><span>Page structure and visual styling</span></div>
-        <div class="skill"><strong>JavaScript</strong><span>Interactive web experiences</span></div>
-        <div class="skill"><strong>Responsive design</strong><span>Layouts for mobile and desktop</span></div>
-        <div class="skill"><strong>UI / UX thinking</strong><span>Clear, accessible interfaces</span></div>
-        <div class="skill"><strong>Unity</strong><span>Beginning game development</span></div>
-        <div class="skill"><strong>Problem solving</strong><span>Learning through experimentation</span></div>
+
+        <article class="skill">
+          <div class="skill-icon">🌐</div>
+          <strong>HTML & CSS</strong>
+          <span>Website structure, styling and responsive layouts.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">⚡</div>
+          <strong>JavaScript</strong>
+          <span>Interactive websites and browser game logic.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🟢</div>
+          <strong>Node.js</strong>
+          <span>Learning server-side JavaScript and backend development.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🔧</div>
+          <strong>Express.js</strong>
+          <span>Building backend routes and web server functionality.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🤖</div>
+          <strong>AI Integration</strong>
+          <span>Connecting AI models and APIs to applications.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🐙</div>
+          <strong>Git & GitHub</strong>
+          <span>Version control, repositories and website deployment.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🎮</div>
+          <strong>Unity</strong>
+          <span>Exploring game development and 3D environments.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🎨</div>
+          <strong>UI / UX Design</strong>
+          <span>Modern interfaces, visual design and user experience.</span>
+        </article>
+
+        <article class="skill">
+          <div class="skill-icon">🧠</div>
+          <strong>Problem Solving</strong>
+          <span>Debugging, experimentation and continuous learning.</span>
+        </article>
+
       </div>
+
     </section>
+
+    <!-- PROJECTS -->
 
     <section class="wrap" id="projects">
+
       <div class="section-head">
-        <div><div class="kicker">Selected work</div><h2>Projects I'm building.</h2></div>
-        <p class="section-intro">A small collection of experiments and projects. More will be added as they develop.</p>
+
+        <div>
+          <div class="kicker">WHAT I'VE BEEN BUILDING</div>
+          <h2>My <span class="gradient">Projects.</span></h2>
+        </div>
+
+        <p class="section-intro">
+          Real projects, creative experiments and ideas
+          that I'm bringing to life.
+        </p>
+
       </div>
+
       <div class="projects-grid">
-        <article class="project">
+
+        <!-- ORBIT -->
+
+        <article class="project" style="--project-glow:#9b8cff">
+
           <div>
-            <div class="project-top"><div class="project-icon" aria-hidden="true">🎮</div><span class="status">IN PROGRESS</span></div>
+
+            <div class="project-top">
+              <div class="project-icon">🤖</div>
+              <span class="status status-featured">FEATURED PROJECT</span>
+            </div>
+
+            <h3>Project ORBIT</h3>
+
+            <p>
+              My personal AI assistant project.
+              Built with an interactive chat interface,
+              a Node.js and Express backend, and AI integration
+              powered by Groq.
+            </p>
+
+            <div class="project-tags">
+              <span>Artificial Intelligence</span>
+              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>Express</span>
+              <span>Groq API</span>
+            </div>
+
+          </div>
+
+          <span class="text-link">
+            Personal AI assistant · In development
+            <span>✦</span>
+          </span>
+
+        </article>
+
+        <!-- PLAYZONE -->
+
+        <article class="project" style="--project-glow:#43d9c5">
+
+          <div>
+
+            <div class="project-top">
+              <div class="project-icon">🎮</div>
+              <span class="status">LIVE WEBSITE</span>
+            </div>
+
             <h3>PlayZone</h3>
-            <p>A browser gaming website project focused on bringing simple, accessible games together in one place.</p>
+
+            <p>
+              A browser gaming platform featuring original
+              game projects, including action, puzzle and
+              sports experiences.
+            </p>
+
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Gaming</span>
+            </div>
+
           </div>
-          <a class="text-link" href="https://sauravparajuli212-ship-it.github.io/my-first-repo/" target="_blank" rel="noopener noreferrer">Visit PlayZone <span aria-hidden="true">↗</span></a>
+
+          <a
+            class="text-link"
+            href="https://sauravparajuli212-ship-it.github.io/my-first-repo/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit PlayZone ↗
+          </a>
+
         </article>
-        <article class="project">
+
+        <!-- NINJA QUEST -->
+
+        <article class="project" style="--project-glow:#b56cff">
+
           <div>
-            <div class="project-top"><div class="project-icon" aria-hidden="true">🕹️</div><span class="status status-soon">COMING SOON</span></div>
-            <h3>Unity Games</h3>
-            <p>I'm preparing to explore 3D environments, gameplay mechanics, and interactive worlds with Unity. Game projects will appear here as they take shape.</p>
+
+            <div class="project-top">
+              <div class="project-icon">🥷</div>
+              <span class="status">GAME PROJECT</span>
+            </div>
+
+            <h3>Ninja Quest</h3>
+
+            <p>
+              An original browser game experiment featuring
+              ninja characters, obstacles, progression
+              and collectible rewards.
+            </p>
+
+            <div class="project-tags">
+              <span>Game Design</span>
+              <span>JavaScript</span>
+              <span>Browser Game</span>
+            </div>
+
           </div>
-          <span class="text-link" aria-label="Unity game projects coming soon">Currently in development <span aria-hidden="true">↗</span></span>
+
+          <a
+            class="text-link"
+            href="https://sauravparajuli212-ship-it.github.io/my-first-repo/ninja.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Play Ninja Quest ↗
+          </a>
+
         </article>
-        <article class="project">
+
+        <!-- UNITY -->
+
+        <article class="project" style="--project-glow:#8b7cff">
+
           <div>
-            <div class="project-top"><div class="project-icon" aria-hidden="true">✦</div><span class="status status-soon">EVOLVING</span></div>
-            <h3>Web Design Experiments</h3>
-            <p>Exploring modern layouts, typography, color, and responsive interfaces while improving my web design skills.</p>
+
+            <div class="project-top">
+              <div class="project-icon">🕹️</div>
+              <span class="status status-soon">COMING SOON</span>
+            </div>
+
+            <h3>Unity Game Development</h3>
+
+            <p>
+              Exploring Unity, 3D environments,
+              gameplay mechanics and interactive worlds.
+              My upcoming game development journey.
+            </p>
+
+            <div class="project-tags">
+              <span>Unity</span>
+              <span>C# Learning</span>
+              <span>3D Games</span>
+            </div>
+
           </div>
-          <a class="text-link" href="#contact">Discuss a website idea <span aria-hidden="true">↗</span></a>
+
+          <span class="text-link">
+            More coming soon ✦
+          </span>
+
         </article>
-        <article class="project">
-          <div>
-            <div class="project-top"><div class="project-icon" aria-hidden="true">⌘</div><span class="status status-soon">MORE TO COME</span></div>
-            <h3>Future Experiments</h3>
-            <p>This space is reserved for new projects, small prototypes, and useful things I create while learning.</p>
-          </div>
-          <a class="text-link" href="mailto:sauravparajuli007@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
-        </article>
+
       </div>
+
+      <p class="project-note">
+        Some projects are still evolving. This portfolio
+        will be updated as new features and experiments
+        are completed.
+      </p>
+
     </section>
 
-    <section class="wrap" id="contact">
-      <div class="contact-box">
+    <!-- GITHUB -->
+
+    <section class="wrap" id="github">
+
+      <div class="github-box">
+
         <div>
-          <div class="kicker">Contact</div>
-          <h2>Have an idea? Let's connect.</h2>
-          <p>Have a question, a project idea, or just want to say hello? Send me an email and I'll get back to you when I can.</p>
-          <a class="text-link email" href="mailto:sauravparajuli007@gmail.com">sauravparajuli007@gmail.com <span aria-hidden="true">↗</span></a>
+          <div class="kicker">OPEN SOURCE & LEARNING</div>
+          <h3>Explore My GitHub.</h3>
+
+          <p>
+            Check out my repositories, code experiments
+            and development journey.
+          </p>
         </div>
-        <a class="btn btn-primary" href="mailto:sauravparajuli007@gmail.com">Email me</a>
+
+        <a
+          class="btn btn-primary"
+          href="https://github.com/sauravparajuli212-ship-it"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit GitHub ↗
+        </a>
+
       </div>
+
     </section>
+
+    <!-- CONTACT -->
+
+    <section class="wrap" id="contact">
+
+      <div class="contact-box">
+
+        <div>
+
+          <div class="kicker">LET'S CONNECT</div>
+
+          <h2>
+            Have an idea?
+            <span class="gradient">Let's build something.</span>
+          </h2>
+
+          <p>
+            Interested in technology, websites, AI or games?
+            Feel free to reach out. I'm always happy to
+            connect and exchange ideas.
+          </p>
+
+          <a
+            class="text-link email"
+            href="mailto:sauravparajuli007@gmail.com"
+          >
+            sauravparajuli007@gmail.com ↗
+          </a>
+
+        </div>
+
+        <a
+          class="btn btn-primary"
+          href="mailto:sauravparajuli007@gmail.com"
+        >
+          Email Me ↗
+        </a>
+
+      </div>
+
+    </section>
+
   </main>
+
+  <!-- FOOTER -->
 
   <footer>
     <div class="wrap footer-inner">
-      <span>© <span id="year"></span> Saurav Parajuli</span>
-      <span>Designed with curiosity. Built step by step.</span>
-      <a href="#home" class="text-link">Back to top ↑</a>
+
+      <span>
+        © <span id="year"></span>
+        <strong>Saurav Parajuli.</strong>
+        All rights reserved.
+      </span>
+
+      <span>Designed with curiosity. Built with passion. ✦</span>
+
+      <a href="#home" class="text-link">
+        Back to top ↑
+      </a>
+
     </div>
   </footer>
+
+  <!-- JAVASCRIPT -->
+
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-    menuBtn.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
+
+    // Automatic copyright year
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // Mobile navigation
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    function closeMenu() {
+      navLinks.classList.remove("open");
+
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open navigation");
+
+      menuBtn.textContent = "☰ Menu";
+    }
+
+    menuBtn.addEventListener("click", () => {
+
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+      menuBtn.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+      );
+
+      menuBtn.textContent = isOpen ? "✕ Close" : "☰ Menu";
+
     });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    // Close menu after selecting a link
+
+    navLinks.querySelectorAll("a").forEach(link => {
+
+      link.addEventListener("click", closeMenu);
+
+    });
+
+
+    // Close menu with Escape key
+
+    document.addEventListener("keydown", event => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    });
+
+
+    // Close mobile menu if screen becomes desktop-sized
+
+    window.addEventListener("resize", () => {
+
+      if (window.innerWidth > 600) {
+        closeMenu();
+      }
+
+    });
+
+
+    // Scroll reveal animations
+
+    const revealElements = document.querySelectorAll(
+      ".panel, .skill, .project, .github-box, .contact-box"
+    );
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if ("IntersectionObserver" in window && !reduceMotion) {
+
+      const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("reveal", "visible");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      }, {
+        threshold: 0.08
+      });
+
+      revealElements.forEach(element => {
+
+        element.classList.add("reveal");
+
+        observer.observe(element);
+
+      });
+
+    }
+
   </script>
+
 </body>
 </html>
